@@ -19,7 +19,7 @@ class Login extends Component {
 		axios.post('/api/login', loginObj).then(({ data }) => {
 			if (data.success) {
 				this.props.setUser(data.user);
-				this.props.history.push('/products');
+				this.props.history.push('/dashboard');
 			} else {
 				alert('Wrong credentails');
 			}
@@ -36,7 +36,7 @@ class Login extends Component {
 			debugger;
 			if (data.success) {
 				this.props.setUser(data.user);
-				this.props.history.push('/products');
+				this.props.history.push('/dashboard');
 			} else {
 				alert('Email already exists login.');
 			}

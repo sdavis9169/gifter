@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const authenticate = require('./server/controller/authenticate');
+const group = require('./server/controller/group');
 require('dotenv').config();
 
 const app = express();
@@ -30,6 +31,7 @@ app.use(session({
 
 app.post('/api/register', authenticate.register)
 app.post('/api/login', authenticate.login)
+app.post('/api/create_group', group.create) 
 
 app.use((req, res, next)=>{
     if(req.session.user){
