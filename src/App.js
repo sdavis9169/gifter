@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import login from './views/login/login';
+import Login from './views/login/login';
 import dashboard from './views/dashboard/dashboard';
 import axios from 'axios';
 
@@ -18,7 +18,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/dashboard" component={dashboard} />
-            <Route path="/" component={login} />
+            <Route path="/" component={Login} />
           </Switch>
         </Router>
       </div>

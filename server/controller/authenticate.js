@@ -32,7 +32,7 @@ module.exports = {
                     // send back response
                     res.send({success: true, user:currentUser})
                 }else{
-                    throw('In correct credentials')
+                    throw('Incorrect credentials')
                 }
             })
             .catch((err)=>{
