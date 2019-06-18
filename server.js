@@ -1,9 +1,9 @@
 const express = require('express');
 const massive = require('massive');
-const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const authenticate = require('./server/controller/authenticate');
 require('dotenv').config();
 
 const app = express();
@@ -16,11 +16,11 @@ massive(CONNECTION_STRING)
         console.log('Database is connected')
     })
     .catch((err)=>{
-        console.log(`There was an err ${err}`)
+        console.log(`There was an error ${err}`)
     })
 
-app.use(cors())
-app.use(bodyParser.json())
+app.use(cors());
+app.use(bodyParser.json());
 app.use(session({
     secret: SESSION_SECRET,
     resave: true,
@@ -28,6 +28,16 @@ app.use(session({
     cookie: { maxAge: 60000 }
 }))
 
+app.post('/api/register', authenticate.register)
+app.post('/api/login', authenticate.login)
+
+app.use((req, res, next)=>{
+    if(req.session.user){
+        next();
+    }else{
+        res.send({success:false, isLoggedIn:false, err:"Please login in"})
+    }
+})  
 const port = PORT || 3131;
 
 app.listen(port, ()=>{
