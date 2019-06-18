@@ -32,6 +32,7 @@ app.use(session({
 app.post('/api/register', authenticate.register)
 app.post('/api/login', authenticate.login)
 app.post('/api/create_group', group.create) 
+app.get('/api/view_groups', group.getAll)
 
 app.use((req, res, next)=>{
     if(req.session.user){

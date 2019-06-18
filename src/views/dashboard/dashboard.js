@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import Group from './component/group';
 
  class Dashboard extends Component {
      constructor(props){
@@ -10,17 +12,34 @@ import { connect } from 'react-redux';
          }
      }
 
+     componentDidMount(){
+         axios.get('/api/view_groups')
+         .then(({data})=>{
+             if(data.success){
+                 this.setState({
+                     groups: data.groups
+                 })
+             } else if(!data.isLoggedIn){
+                 this.props.history.push('/')
+             } else{
+                 alert('There was an error')
+             }
+         })
+     }
+
      createGroup = () => {
          const groupObj = {
-             
+
          }
      }
 
     render() {
+        const groups = this.state.groups.map((e, r) => {
+            return <Group key={e.id} id={e.id} name={e.name} />
+        })
         return (
             <div>
-                dashboard
-                <input type="text"/>
+                {groups}
             </div>
         )
     }
