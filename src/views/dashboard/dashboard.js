@@ -4,13 +4,12 @@ import axios from 'axios';
 import Group from './component/group';
 
  class Dashboard extends Component {
-     constructor(props){
-         super(props);
-         this.state = {
+
+         state = {
              create_group: '',
              groups: [],
          }
-     }
+     
 
      componentDidMount(){
          axios.get('/api/view_groups')
@@ -27,10 +26,17 @@ import Group from './component/group';
          })
      }
 
+     handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+     }
+
      createGroup = () => {
          const groupObj = {
-
+            create_group: this.state.create_group
          }
+         this.props.createGroup(groupObj)
      }
 
     render() {
@@ -40,6 +46,8 @@ import Group from './component/group';
         return (
             <div>
                 {groups}
+                <input type="text" placeholder="Group Name" value={this.state.handleChange} onChange={this.handleChange}/>
+                <button onClick={this.createGroup}>Create Group</button>
             </div>
         )
     }
