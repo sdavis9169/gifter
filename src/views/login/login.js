@@ -3,6 +3,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/action_creators/action_creator';
 import Register from './subview/register/register';
+import './login.css';
 
 class Login extends Component {
 	state = {
@@ -51,12 +52,12 @@ class Login extends Component {
     render() {
 		const register = this.state.showRegister ? <Register register={this.register} /> : '';
 		return (
-			<div className="login">
+			<div className="auth-box">
 				{register}
 				{this.state.showRegister ? (
 					''
 				) : (
-					<div>
+					<div className="login">
 						<input
 							type="text"
 							placeholder="Email"
