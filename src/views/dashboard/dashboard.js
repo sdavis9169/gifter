@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as actions from '../../redux/action_creators/action_creator';
 import axios from 'axios';
 import Group from './component/group';
-import AddGroup from './subview/addGroup/addGroup';
 import './dashboard.css'
 import Nav from '../nav/nav'
 
