@@ -50,6 +50,6 @@ import Group from './component/group';
                 <button onClick={this.createGroup}>Create Group</button>
             </div>
         )
-    }
-}
+    }}
+
 export default connect((state) => state)(Dashboard);
