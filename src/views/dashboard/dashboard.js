@@ -7,7 +7,7 @@ import Group from './component/group';
 
          state = {
              create_group: '',
-             groups: [],
+             groups: []
          }
      
 
