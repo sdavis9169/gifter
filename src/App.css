@@ -1,19 +1,39 @@
-.App {
-  text-align: center;
+.App{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
+.App {
+  text-align: center;
+}
+.auth-box{
+  color:white;
+  border: transparent;
+  box-shadow: rgba(71, 71, 71, 0.507) 0px 4px 4px 4px;
+  padding: 50px 100px;
 
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.login{
+  margin: 20px 10px
+}
+.black-button{
+  border-radius: 1px;
+  background-image: radial-gradient(circle at 50%-46%, #737373,#403d39);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rbga(0, 0, 0, .2);
+  color: white;
+  font-size: 15px;
+  padding: 8px
+}
+.auth-box .black-button{
+  margin: 10px
+}
+.button-container{
+  display: flex;
+  justify-content: space-around
+}
+.auth-box h1{
+  font-size: 70px;
+  margin: 10px
 }

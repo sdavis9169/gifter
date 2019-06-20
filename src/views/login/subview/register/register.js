@@ -28,12 +28,12 @@ export default class register extends Component {
     }
     render() {
         const inputs = Object.keys(this.state).map((e, i)=>{
-            return <input type="text" key={i} placeholder={e} name={e} value={this.state[e]} onChange={this.handleChange}/>
+            return <input className="login" type="text" key={i} placeholder={e} name={e} value={this.state[e]} onChange={this.handleChange}/>
         })  
         return (
             <div>
                 {inputs}
-                <button onClick={this.register}>Register</button>
+                <button className="black-button" onClick={this.register}>Register</button>
             </div>
         )
     }

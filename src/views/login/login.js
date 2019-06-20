@@ -3,7 +3,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/action_creators/action_creator';
 import Register from './subview/register/register';
-import './login.css';
+
 
 class Login extends Component {
 	state = {
@@ -52,11 +52,14 @@ class Login extends Component {
     render() {
 		const register = this.state.showRegister ? <Register register={this.register} /> : '';
 		return (
-			<div className="auth-box">
+			<div>
 				{register}
 				{this.state.showRegister ? (
 					''
 				) : (
+					<div className="auth-box">
+					<img src="https://cdn1.iconfinder.com/data/icons/ecommerce-61/48/eccomerce_-_gift-256.png" alt="logo"/>
+						<h1>gifter</h1>
 					<div className="login">
 						<input
 							type="text"
@@ -65,6 +68,8 @@ class Login extends Component {
 							value={this.state.email}
 							onChange={this.handleChange}
 						/>
+						</div>
+						<div className="login">
 						<input
 							type="text"
 							placeholder="Password"
@@ -72,8 +77,11 @@ class Login extends Component {
 							value={this.state.password}
 							onChange={this.handleChange}
 						/>
-						<button onClick={this.login}>login</button>
-						<button onClick={this.showRegister}>register</button>
+						</div>
+						<div className="button-container">
+							<button className="black-button" onClick={this.login}>login</button>
+							<button className="black-button" onClick={this.showRegister}>register</button>
+						</div>
 					</div>
 				)}
 			</div>
