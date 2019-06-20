@@ -1,23 +1,31 @@
 module.exports = {
     create: (req, res, next) => {
-        const db = req.app.get('db')
-        const { name, owner_id} = req.body;
 
-        db.group_table.findOne({name})
-            .then((user)=>{
-                if(user){
-                    console.log(user)
-                    throw('Sorry, this group already exists')
-                } else{
-                    console.log('good to go')
-                }
-            })
-            .then(()=>{
-                return db.group_table.insert({name, owner_id})
-            })
+        const db = req.app.get('db')
+        const { title }  = req.body;
+
+        db.group_table.insert({title})
+        .then(()=>{{res.status(500)
+            .send({Message: 'Group Added'})}})
             .catch((err)=>{
-                console.log(err)
+                res.status(500).send({errorMessage: "Error adding user"})
+            console.log(err)
             })
+
+        // db.group_table.findOne({title})
+        //     .then((name)=>{
+        //         if(name){
+        //             throw('Sorry, this group already exists')
+        //         } else{
+        //             console.log(user)
+        //         }
+        //     })
+        //     .then(()=>{
+        //         return db.group_table.insert({title})
+        //     })
+        //     .catch((err)=>{
+        //         console.log(err)
+        //     })
     },
     
     getAll: (req, res, next) => {

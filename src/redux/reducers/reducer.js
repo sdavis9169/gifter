@@ -10,4 +10,12 @@ const user = (state= {}, action) => {
     }
 }
 
-export default combineReducers({user});
+const group = (state={}, action) => {
+    switch(action.type){
+        case'set_group':
+        return action.payload;
+        default: return state
+    }
+}
+
+export default combineReducers({user, group});

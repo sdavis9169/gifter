@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class register extends Component {
+export default class Register extends Component {
     state = {
         email: '',
         password: '',

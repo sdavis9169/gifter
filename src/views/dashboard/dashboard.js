@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../../redux/action_creators/action_creator';
 import axios from 'axios';
 import Group from './component/group';
+import AddGroup from './subview/addGroup/addGroup';
+import './dashboard.css'
+import Nav from '../nav/nav'
 
  class Dashboard extends Component {
 
          state = {
-             create_group: '',
-             groups: []
+             groups: [],
          }
      
 
@@ -26,30 +29,18 @@ import Group from './component/group';
          })
      }
 
-     handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-     }
-
-     createGroup = () => {
-         const groupObj = {
-            create_group: this.state.create_group
-         }
-         this.props.createGroup(groupObj)
-     }
-
+    
     render() {
         const groups = this.state.groups.map((e, r) => {
-            return <Group key={e.id} id={e.id} name={e.name} />
+            return <Group key={e.id} id={e.id} title={e.title} />
         })
         return (
             <div>
+                <h1>Active groups</h1>
+                <Nav />
                 {groups}
-                <input type="text" placeholder="Group Name" value={this.state.handleChange} onChange={this.handleChange}/>
-                <button onClick={this.createGroup}>Create Group</button>
             </div>
         )
     }}
 
-export default connect((state) => state)(Dashboard);
+export default connect(state => state, actions)(Dashboard);

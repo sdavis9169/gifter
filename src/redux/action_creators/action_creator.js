@@ -4,3 +4,10 @@ export const setUser = (user) => {
         payload: user
     }
 }
+
+export const setGroup = (group) => {
+    return {
+        type: "set_group",
+        payload: group
+    }
+}
