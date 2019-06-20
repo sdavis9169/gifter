@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const authenticate = require('./server/controller/authenticate');
 const group = require('./server/controller/group');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -29,10 +30,18 @@ app.use(session({
     cookie: { maxAge: 60000 }
 }))
 
+app.use(express.static(path.join(__dirname, '/build')));
+
 app.post('/api/register', authenticate.register)
 app.post('/api/login', authenticate.login)
 app.post('/api/create_group', group.create) 
 app.get('/api/view_groups', group.getAll)
+
+app.get('/*', (req, res) => {
+    res.sendFile('index.html', {
+        root: path.join(__dirname, "build")
+      })
+});
 
 app.use((req, res, next)=>{
     if(req.session.user){
