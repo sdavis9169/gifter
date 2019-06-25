@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/action_creators/action_creator';
 import axios from 'axios';
-import Group from './component/group';
 import './dashboard.css'
 import Nav from '../nav/nav'
-import CreateGroup from '../createGroup/createGroup';
+
 import { Link } from 'react-router-dom';
 
  class Dashboard extends Component {
+        constructor(props){
+            super(props);
+            this.state = {
+                groups: []
+            }
+        }
 
-         state = {
-             groups: [],
-         }
-     
 
      componentDidMount(){
          axios.get('/api/view_groups')
@@ -32,12 +33,17 @@ import { Link } from 'react-router-dom';
 
     
     render() {
-        const groups = this.state.groups.map((e, r) => {
-            return <Group key={e.id} id={e.id} title={e.title} />
+        const groups = this.state.groups.map((group, index) => {
+            return (
+                <Link key={index} to={`/group/${group.id}`}>
+                <div>
+                    <h2>{group.title}</h2>
+                </div>
+                </Link>
+            )
         })
         return (
             <div>
-                <CreateGroup />
                 <h1>Active groups</h1>
                 <Nav />
                 {groups}

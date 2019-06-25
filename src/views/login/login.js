@@ -12,7 +12,7 @@ class Login extends Component {
 		showRegister: false
 	};
 	login = () => {
-		debugger;
+
 		const loginObj = {
 			email: this.state.email,
 			password: this.state.password
@@ -32,9 +32,9 @@ class Login extends Component {
 		});
 	};
 	register = registerObj => {
-		debugger;
+
 		axios.post('/api/register', registerObj).then(({ data }) => {
-			debugger;
+
 			if (data.success) {
 				this.props.setUser(data.user);
 				this.props.history.push('/dashboard');

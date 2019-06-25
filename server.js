@@ -36,6 +36,7 @@ app.post('/api/register', authenticate.register)
 app.post('/api/login', authenticate.login)
 app.post('/api/create_group', group.create) 
 app.get('/api/view_groups', group.getAll)
+app.get('/api/groups/:id', group.getSingleGroup)
 
 app.get('/*', (req, res) => {
     res.sendFile('index.html', {
