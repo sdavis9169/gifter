@@ -37,7 +37,16 @@ module.exports = {
         .catch((err)=>{
             res.send({success: false, err})
         })
+    },
 
-
+    getSingleGroup: (req, res, next)=>{
+        const db = req.app.get('db');
+        db.group_table.findOne({id:req.params.id})
+            .then((group)=>{
+                res.send({success: true, group})
+            })
+            .catch((err)=>{
+                res.send({success: false, err})
+            })
     }
 }

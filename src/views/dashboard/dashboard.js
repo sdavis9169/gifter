@@ -5,6 +5,8 @@ import axios from 'axios';
 import Group from './component/group';
 import './dashboard.css'
 import Nav from '../nav/nav'
+import CreateGroup from '../createGroup/createGroup';
+import { Link } from 'react-router-dom';
 
  class Dashboard extends Component {
 
@@ -35,6 +37,7 @@ import Nav from '../nav/nav'
         })
         return (
             <div>
+                <CreateGroup />
                 <h1>Active groups</h1>
                 <Nav />
                 {groups}
