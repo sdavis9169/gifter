@@ -34,9 +34,14 @@ app.use(express.static(path.join(__dirname, '/build')));
 
 app.post('/api/register', authenticate.register)
 app.post('/api/login', authenticate.login)
+
 app.post('/api/create_group', group.create) 
 app.get('/api/view_groups', group.getAll)
 app.get('/api/groups/:id', group.getSingleGroup)
+
+app.get('/api/posts', post.getAll)
+app.get('/api/post', post.getOnePost)
+app.get('/api/new_post', post.create)
 
 app.get('/*', (req, res) => {
     res.sendFile('index.html', {

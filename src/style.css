@@ -4,6 +4,6 @@ body {
     font-family: sans-serif;
     background: rgb(0,212,255);
     background: linear-gradient(90deg, rgba(168,240,255,1) 0%, rgba(236,183,56,1) 47%, rgba(21,156,184,1) 100%);
-    background-size: auto;
+    background-size: 100vw 100vh;
     background-repeat: no-repeat;
   }

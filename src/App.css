@@ -37,3 +37,17 @@
   font-size: 70px;
   margin: 10px
 }
+.nav-bar,
+.nav-bar-top{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center
+}
+.nav-bar{
+  justify-content: space-between;
+  height: 100vh;
+  padding: 20px;
+  width: 8vw;
+  background-image: linear-gradient(to bottom,  #ff9770 73%, #ff70a6)
+}

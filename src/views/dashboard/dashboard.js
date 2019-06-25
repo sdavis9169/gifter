@@ -45,8 +45,9 @@ import { Link } from 'react-router-dom';
         return (
             <div>
                 <h1>Active groups</h1>
-                <Nav />
                 {groups}
+                <Nav />
+                
             </div>
         )
     }}
