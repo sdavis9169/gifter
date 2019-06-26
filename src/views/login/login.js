@@ -12,12 +12,12 @@ class Login extends Component {
 		showRegister: false
 	};
 	login = () => {
-
 		const loginObj = {
 			email: this.state.email,
 			password: this.state.password
 		};
 		axios.post('/api/login', loginObj).then(({ data }) => {
+			debugger
 			if (data.success) {
 				this.props.setUser(data.user);
 				this.props.history.push('/dashboard');

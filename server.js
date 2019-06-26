@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const authenticate = require('./server/controller/authenticate');
 const group = require('./server/controller/group');
+const post = require('./server/controller/post');
 const path = require('path');
 require('dotenv').config();
 
@@ -38,10 +39,9 @@ app.post('/api/login', authenticate.login)
 app.post('/api/create_group', group.create) 
 app.get('/api/view_groups', group.getAll)
 app.get('/api/groups/:id', group.getSingleGroup)
-
 app.get('/api/posts', post.getAll)
 app.get('/api/post', post.getOnePost)
-app.get('/api/new_post', post.create)
+app.post('/api/new_post', post.createPost)
 
 app.get('/*', (req, res) => {
     res.sendFile('index.html', {
@@ -53,7 +53,7 @@ app.use((req, res, next)=>{
     if(req.session.user){
         next();
     }else{
-        res.send({success:false, isLoggedIn:false, err:"Please login in"})
+        res.send({success:false, isLoggedIn:false, err:"Please login"})
     }
 })  
 const port = PORT || 3131;

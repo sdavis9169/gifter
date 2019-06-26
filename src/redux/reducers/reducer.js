@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
 
-const user = (state= {}, action) => {
+const user = (state={}, action) => {
     switch(action.type){
         case 'set_user':
             return action.payload;
@@ -10,7 +10,7 @@ const user = (state= {}, action) => {
     }
 }
 
-const group = (state={}, action) => {
+const group = (state=[], action) => {
     switch(action.type){
         case'set_group':
         return action.payload;
@@ -18,4 +18,12 @@ const group = (state={}, action) => {
     }
 }
 
-export default combineReducers({user, group});
+const posts = (state=[], action) =>{
+    switch(action.type){
+        case 'set_post' :
+        return action.payload;
+        default: return state
+    }
+}
+
+export default combineReducers({user, group, posts});

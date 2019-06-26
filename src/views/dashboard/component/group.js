@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import Post from './post';
 
 
 class Group extends Component {
@@ -24,7 +25,7 @@ class Group extends Component {
         return (
             <div>
                 <h1>Title: {this.state.group.title}</h1>
-                <h4>created by: </h4>
+                <Post />
             </div>
         )
     }

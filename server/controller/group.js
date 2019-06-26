@@ -4,13 +4,21 @@ module.exports = {
         const db = req.app.get('db')
         const { title }  = req.body;
 
-        db.group_table.insert({title})
-        .then(()=>{{res.status(500)
-            .send({Message: 'Group Added'})}})
-            .catch((err)=>{
-                res.status(500).send({errorMessage: "Error adding user"})
-            console.log(err)
-            })
+        // db.group_table.insert({title})
+        // .then(()=>{{res.status(500)
+        //     .send({Message: 'Group Added'})}})
+        //     .catch((err)=>{
+        //         res.status(500).send({errorMessage: "Error adding user"})
+        //     console.log(err)
+        //     })
+
+            db.group_table.insert({title})
+                .then(()=>{
+                    res.status(200)
+                })
+                .catch((err)=>{
+                    res.status(500)
+                })
 
         // db.group_table.findOne({title})
         //     .then((name)=>{

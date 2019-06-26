@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";;
 
 class CreateGroup extends Component {
     constructor(props){
@@ -21,7 +22,7 @@ createGroup = () =>{
     };
     axios.post('/api/create_group', group)
     .then(()=>{
-
+        this.props.history.push('/dashboard')
     })
 }
 
@@ -37,4 +38,4 @@ createGroup = () =>{
     }
 }
 
-export default connect((state) => state)(CreateGroup);
+export default withRouter(connect((state) => state)(CreateGroup));
