@@ -41,6 +41,7 @@ module.exports = {
 // }
 
 createPost: (req, res, next)=>{
+
     const db = req.app.get('db');
     const {event_type, item_name, picture, link} = req.body;
 
@@ -54,5 +55,15 @@ createPost: (req, res, next)=>{
         })
 },
 
+deletePost: (req, res, next)=>{
+    const db = req.app.get('db');
+    db.user_post.destroy({id: req.params.id})
+        .then(post=>{
+            res.send({success: true, post})
+        })
+        .then(err =>{
+            res.send({sucess: false, err})
+        })
+},
 
 }

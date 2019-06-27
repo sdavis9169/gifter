@@ -33,15 +33,21 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, '/build')));
 
+//AUTH CONTROLLERS
 app.post('/api/register', authenticate.register)
 app.post('/api/login', authenticate.login)
 
+//GROUP CONTROLLERS
 app.post('/api/create_group', group.create) 
 app.get('/api/view_groups', group.getAll)
 app.get('/api/groups/:id', group.getSingleGroup)
+
+//POST CONTROLLERS
 app.get('/api/posts', post.getAll)
 app.get('/api/post', post.getOnePost)
 app.post('/api/new_post', post.createPost)
+app.delete('/api/cart/:id', post.deletePost)
+
 
 app.get('/*', (req, res) => {
     res.sendFile('index.html', {

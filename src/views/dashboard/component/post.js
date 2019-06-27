@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from 'react-redux';
+import Posts from './posts';
 
 class Post extends Component {
   constructor(props) {
@@ -13,11 +14,11 @@ class Post extends Component {
     };
   }
 
-  handleChange = (e) => {
-    this.setState({
-        [e.target.name] : e.target.value
-    })
-}
+
+  handleChange(event, name) {
+		const value = event.target.value;
+		this.setState({ [name]: value });
+	}
 
   submit=()=>{
     debugger
@@ -28,49 +29,50 @@ class Post extends Component {
         link: this.state.link,
     }
     axios.post('/api/new_post', postObj)
-    
         .then((post)=>{
           console.log(post)
-          this.props.history.push('/dashboard')
         })
-        .catch((err)=>{
-          console.log(err)
-        })
+    
   }
 
   render() {
     return (
       <div>
+        <div>
           <input
             type="text"
             placeholder="Event Type"
-            onChange={this.handleChange}
-
+            onChange={(e)=> this.handleChange(e, 'event_type')}
+            value={this.state.event_type}
           />
           <br/>
           <input
             type="text"
             placeholder="Item Name"
-            onChange={this.handleChange}
-
+            onChange={(e)=> this.handleChange(e, 'item_name')}
+            value={this.state.item_name}
           />
           <br/>
           <input
             type="text"
             placeholder="Picture"
-            onChange={this.handleChange}
-
+            onChange={(e)=> this.handleChange(e, 'picture')}
+            value={this.state.picture}
           />
           <br/>
-          <input 
-          type="text" 
-          placeholder="Link" 
-          onChange={this.handleChange} 
-
+          <input
+            type="text"
+            placeholder="Link"
+            onChange={(e)=> this.handleChange(e, 'link')}
+            value={this.state.link}
           />
 
           <br/>
           <button type="submit" onClick={()=>this.submit()}>Add Item</button>
+          </div>
+          <div>
+            <Posts />
+          </div>
       </div>
     );
   }

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../redux/action_creators/action_creator';
 import axios from 'axios';
 import './dashboard.css'
-import Nav from '../nav/nav';
+// import Nav from '../nav/nav';
+import CreateGroup from '../createGroup/createGroup';
 
 import { Link } from 'react-router-dom';
 
@@ -44,9 +45,10 @@ import { Link } from 'react-router-dom';
         })
         return (
             <div>
+                <CreateGroup />
                 <h1>Active groups</h1>
                 {groups}
-                <Nav />
+
                 
             </div>
         )
