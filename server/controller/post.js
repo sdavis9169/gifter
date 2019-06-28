@@ -40,43 +40,42 @@ module.exports = {
 //     const {event_type,}
 // }
 
-// createPost: (req, res, next)=>{
-
-//     const db = req.app.get('db');
-//     const {event_type, item_name, picture, link, group_id, user_id} = req.body;
-
-
-//     db.user_post.insert({event_type, item_name, picture, link, group_id, user_id})
-//         .then((post)=>{
-//             res.send({success: true, post})
-//         })
-//         .catch((err)=>{
-//             res.send({success:false, err})
-//         })
-// },
-
 createPost: (req, res, next)=>{
+
     const db = req.app.get('db');
-    const postObj = {
-        user_id: req.session.user.id,
+    const {event_type, item_name, picture, link} = req.body;
 
-        event_type: req.body.event_type,
-        item_name: req.body.item_name,
-        picture:req.body.picture,
-        link: req.body.link
-    };
-
-    db.user_post.insert(postObj)
-    .then(newPost=>{
-        return db.get_post_by_user_id({id: req.session.user.id})
-    })
-    .then(post=>{
-        res.send({success: true, post})
-    })
-    .catch(err=>{
-        res.send({success: false, err})
-    })
+    db.user_post.insert({event_type, item_name, picture, link})
+        .then((post)=>{
+            res.send({success: true, post})
+        })
+        .catch((err)=>{
+            res.send({success:false, err})
+        })
 },
+
+// createPost: (req, res, next)=>{
+//     const db = req.app.get('db');
+//     const postObj = {
+//         user_id: req.session.user.id,
+
+//         event_type: req.body.event_type,
+//         item_name: req.body.item_name,
+//         picture:req.body.picture,
+//         link: req.body.link
+//     };
+
+//     db.user_post.insert(postObj)
+//     .then(newPost=>{
+//         return db.get_post_by_user_id({id: req.session.user.id})
+//     })
+//     .then(post=>{
+//         res.send({success: true, post})
+//     })
+//     .catch(err=>{
+//         res.send({success: false, err})
+//     })
+// },
 
 deletePost: (req, res, next)=>{
     const db = req.app.get('db');
