@@ -4,19 +4,16 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import * as actions from '../../redux/action_creators/action_creator';
 
-
 class CreateGroup extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            title: ''
-        }
+    state = {
+       title: ''
     }
 
-    handleChange(event, name) {
-		const value = event.target.value;
-		this.setState({ [name]: value });
-	}
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name] : e.target.value
+        })
+    }
 
 createGroup = () =>{
     const group = {
@@ -24,9 +21,11 @@ createGroup = () =>{
     };
     axios.post('/api/create_group', group)
     .then(({data})=>{
+        debugger
+        console.log({data})
         if(data.success){
         this.props.setGroup(data.group);
-        this.props.history.push('/dashboard')
+        this.props.history.push(`/groups/${data.group.id}`)
         }
     })
 
@@ -36,9 +35,10 @@ createGroup = () =>{
         return (
             <div>
                 <input type='text'
+                name='title'
 						value={this.state.title}
-						onChange={(e) => this.handleChange(e, 'title')} />
-                <button onClick={()=>this.createGroup()}>Add</button>
+						onChange={this.handleChange} />
+                <button onClick={this.createGroup}>Add</button>
             </div>
         )
     }

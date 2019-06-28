@@ -4,35 +4,39 @@ module.exports = {
         const { title }  = req.body;
 
         // db.group_table.insert({title})
-        // .then(()=>{{res.status(500)
-        //     .send({Message: 'Group Added'})}})
-        //     .catch((err)=>{
-        //         res.status(500).send({errorMessage: "Error adding user"})
-        //     console.log(err)
-        //     })
+//         .then(()=>{{res.status(200)
+//             .send({Message: 'Group Added'})}})
+//             .catch((err)=>{
+//                 res.status(500).send({errorMessage: "Error adding user"})
+//             console.log(err)
+//             })
 
-            db.group_table.insert({title})
-                .then(()=>{
-                    res.status(200)
-                })
-                .catch((err)=>{
-                    res.status(500)
-                })
+            // db.group_table.insert({title})
+            //     .then(()=>{
+            //         res.status(200)
+            //     })
+            //     .catch((err)=>{
+            //         res.status(500)
+            //     })
 
-        // db.group_table.findOne({title})
-        //     .then((name)=>{
-        //         if(name){
-        //             throw('Sorry, this group already exists')
-        //         } else{
-        //             console.log(user)
-        //         }
-        //     })
-        //     .then(()=>{
-        //         return db.group_table.insert({title})
-        //     })
-        //     .catch((err)=>{
-        //         console.log(err)
-        //     })
+        db.group_table.findOne({title})
+            .then((name)=>{
+                if(name){
+                   throw('Sorry, this group already exists')
+                } else{
+                    console.log('Broken')
+                }
+            })
+            .then(()=>{
+                return db.group_table.insert({title})
+
+            })
+           .then((group)=>{
+               res.send({success: true, group})
+           })
+            .catch((err)=>{
+                res.send({success: false, err})
+            })
     },
     
     getAll: (req, res, next) => {

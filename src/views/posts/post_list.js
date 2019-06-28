@@ -41,7 +41,7 @@ deletePost =(id)=>{
             />
         })
         return (
-            <div className="post-box">
+            <div>
               {posts}
             </div>
         )

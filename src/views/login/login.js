@@ -17,7 +17,7 @@ class Login extends Component {
 			password: this.state.password
 		};
 		axios.post('/api/login', loginObj).then(({ data }) => {
-			debugger
+
 			if (data.success) {
 				this.props.setUser(data.user);
 				this.props.history.push('/dashboard');

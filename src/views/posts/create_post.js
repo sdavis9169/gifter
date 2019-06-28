@@ -3,7 +3,7 @@ import axios from "axios";
 import { connect } from 'react-redux';
 import Posts from './post_list';
 
-class Post extends Component {
+class CreatePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,6 +27,7 @@ class Post extends Component {
         item_name: this.state.item_name,
         picture: this.state.picture,
         link: this.state.link,
+
     }
     axios.post('/api/new_post', postObj)
         .then((post)=>{
@@ -78,4 +79,4 @@ class Post extends Component {
   }
 }
 
-export default connect((state) => state)(Post);
+export default connect((state) => state)(CreatePost);

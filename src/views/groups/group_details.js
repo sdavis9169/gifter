@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import Post from '../posts/create_post';
 import Posts from '../posts/post_list'
+import * as actions from '../../redux/action_creators/action_creator';
 
 
 class ViewGroup extends Component {
@@ -13,13 +14,16 @@ class ViewGroup extends Component {
         axios.get(`/api/groups/${this.props.match.params.id}`)
             .then(({ data }) => {
 				console.log(data)
-			if (data.success) {
-				this.setState({
-					group: data.group
-				});
-			} else {
-				alert('something blew up');
+			if(data.success){
+				this.props.setGroup(data.group);
 			}
+			// if (data.success) {
+			// 	this.setState({
+			// 		group: data.group
+			// 	});
+			// } else {
+			// 	alert('something blew up');
+			// }
 		});
 	}
 
@@ -35,5 +39,5 @@ class ViewGroup extends Component {
     }
 }
 
-export default connect(state=>state)(ViewGroup);
+export default connect(state=>state, actions)(ViewGroup);
 
