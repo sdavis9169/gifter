@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from 'react-redux';
-import Posts from './posts';
+import Posts from './post_list';
 
 class Post extends Component {
   constructor(props) {
@@ -71,7 +71,7 @@ class Post extends Component {
           <button type="submit" onClick={()=>this.submit()}>Add Item</button>
           </div>
           <div>
-            <Posts />
+
           </div>
       </div>
     );

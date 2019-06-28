@@ -7,7 +7,7 @@ class App extends Component {
   componentDidMount(){
     axios.get('/api/test')
     .then((res)=>{
-      console.log(res.data)
+
     })
   }
   render() {

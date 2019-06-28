@@ -1,6 +1,5 @@
 module.exports = {
     create: (req, res, next) => {
-
         const db = req.app.get('db')
         const { title }  = req.body;
 

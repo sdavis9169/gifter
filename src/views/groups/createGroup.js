@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
+import * as actions from '../../redux/action_creators/action_creator';
+
 
 class CreateGroup extends Component {
     constructor(props){
@@ -21,9 +23,13 @@ createGroup = () =>{
         title: this.state.title
     };
     axios.post('/api/create_group', group)
-    .then(()=>{
+    .then(({data})=>{
+        if(data.success){
+        this.props.setGroup(data.group);
         this.props.history.push('/dashboard')
+        }
     })
+
 }
 
     render() {
@@ -38,4 +44,4 @@ createGroup = () =>{
     }
 }
 
-export default withRouter(connect((state) => state)(CreateGroup));
+export default withRouter(connect((state) => state, actions)(CreateGroup));

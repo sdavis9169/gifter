@@ -41,6 +41,7 @@ app.post('/api/login', authenticate.login)
 app.post('/api/create_group', group.create) 
 app.get('/api/view_groups', group.getAll)
 app.get('/api/groups/:id', group.getSingleGroup)
+app.get('/api/group_list', group.getAll)
 
 //POST CONTROLLERS
 app.get('/api/posts', post.getAll)
