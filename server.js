@@ -47,7 +47,7 @@ app.get('/api/group_list', group.getAll)
 app.get('/api/posts', post.getAll)
 app.get('/api/post', post.getOnePost)
 app.post('/api/new_post', post.createPost)
-app.delete('/api/cart/:id', post.deletePost)
+app.delete('/api/post/:id', post.deletePost)
 
 
 app.get('/*', (req, res) => {

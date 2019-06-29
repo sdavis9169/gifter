@@ -38,7 +38,7 @@ createGroup = () =>{
                 name='title'
 						value={this.state.title}
 						onChange={this.handleChange} />
-                <button onClick={this.createGroup}>Add</button>
+                <button className="btn btn-primary" onClick={this.createGroup}>Add</button>
             </div>
         )
     }
