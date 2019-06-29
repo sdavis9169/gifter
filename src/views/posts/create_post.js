@@ -27,6 +27,7 @@ class CreatePost extends Component {
         item_name: this.state.item_name,
         picture: this.state.picture,
         link: this.state.link,
+        group_id: this.state.group_id
 
     }
     axios.post('/api/new_post', postObj)

@@ -41,9 +41,11 @@ deletePost =(id)=>{
             />
         })
         return (
-            <div>
+                <div className="row">
+        
               {posts}
-            </div>
+              </div>
+
         )
     }
 }

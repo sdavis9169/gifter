@@ -4,19 +4,23 @@ import Axios from 'axios';
 
 export default function Post (props) {
         return (
-            <div className='post-box'>
-            <div>
-            <button>Edit</button>
-                <button onClick={()=>{props.deletePost(props.id)}} >Delete</button>
-                <Link to={`/posts/${props.id}`}>
-                <h2>{props.event_type}</h2>
-                <h2>{props.item_name}</h2>
-                <h2>{props.picture}</h2>
-                <h2>{props.link}</h2>
-                </Link>
-                
+            <div className="row" >
+            <div className='card-deck' >
+            <div className='card'>
+                {/* <Link to={`/posts/${props.id}`}> */}
+                <img src={props.picture} className="card-img-top" />
+                <div className="card-body" >
+                <h4>{props.event_type}</h4>
+                <h4>{props.item_name}</h4>
+                <h5>{props.link}</h5>
+                {/* </Link> */}
+                <button className="btn btn-primary" >Edit</button>
+                <button className="btn btn-primary" onClick={()=>{props.deletePost(props.id)}} >Delete</button>
                 </div>
             </div>
+            </div>
+            </div>
+        
         )
     }
 

@@ -24,7 +24,7 @@ module.exports = {
                 if(name){
                    throw('Sorry, this group already exists')
                 } else{
-                    console.log('Broken')
+                    console.log('Group Already Exists')
                 }
             })
             .then(()=>{
