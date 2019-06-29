@@ -31,8 +31,12 @@ export default class Register extends Component {
             return <input className="login" type="text" key={i} placeholder={e} name={e} value={this.state[e]} onChange={this.handleChange}/>
         })  
         return (
-            <div>
+            <div className="auth-box">
+            <img src="https://cdn1.iconfinder.com/data/icons/ecommerce-61/48/eccomerce_-_gift-256.png" alt="logo" />
+            <h1>gifter</h1>
+            <div className="login">
                 {inputs}
+                </div>
                 <button className="black-button" onClick={this.register}>Register</button>
             </div>
         )
