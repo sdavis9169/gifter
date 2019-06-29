@@ -70,7 +70,7 @@ class CreatePost extends Component {
           />
 
           <br/>
-          <button type="submit" onClick={()=>this.submit()}>Add Item</button>
+          <button className="btn btn-primary" type="submit" onClick={()=>this.submit()}>Add Item</button>
           </div>
           <div>
 
