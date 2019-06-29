@@ -2,23 +2,24 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from 'react-redux';
 import Posts from './post_list';
+import { withRouter } from "react-router-dom";
+
 
 class CreatePost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       event_type: "",
       item_name: "",
       picture: "",
       link: ""
     };
+  
+
+
+    handleChange = (e) => {
+      this.setState({
+          [e.target.name] : e.target.value
+      })
   }
-
-
-  handleChange(event, name) {
-		const value = event.target.value;
-		this.setState({ [name]: value });
-	}
 
   submit=()=>{
     debugger
@@ -31,8 +32,10 @@ class CreatePost extends Component {
 
     }
     axios.post('/api/new_post', postObj)
-        .then((post)=>{
-          console.log(post)
+        .then(({data})=>{
+          if(data.success){
+            this.props.history.push(`/dashboard`)
+          }
         })
     
   }
@@ -44,28 +47,32 @@ class CreatePost extends Component {
           <input
             type="text"
             placeholder="Event Type"
-            onChange={(e)=> this.handleChange(e, 'event_type')}
+            name="event_type"
+            onChange={this.handleChange}
             value={this.state.event_type}
           />
           <br/>
           <input
             type="text"
             placeholder="Item Name"
-            onChange={(e)=> this.handleChange(e, 'item_name')}
+            name="item_name"
+            onChange={this.handleChange}
             value={this.state.item_name}
           />
           <br/>
           <input
             type="text"
             placeholder="Picture"
-            onChange={(e)=> this.handleChange(e, 'picture')}
+            name="picture"
+            onChange={this.handleChange}
             value={this.state.picture}
           />
           <br/>
           <input
             type="text"
             placeholder="Link"
-            onChange={(e)=> this.handleChange(e, 'link')}
+            name="link"
+            onChange={this.handleChange}
             value={this.state.link}
           />
 
@@ -80,4 +87,4 @@ class CreatePost extends Component {
   }
 }
 
-export default connect((state) => state)(CreatePost);
+export default withRouter(connect((state) => state)(CreatePost));

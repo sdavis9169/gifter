@@ -3,8 +3,6 @@ import axios from 'axios';
 import Post from './post'
 import {connect} from 'react-redux';
 
-
-
 class Posts extends Component {
     state = {
         posts: []

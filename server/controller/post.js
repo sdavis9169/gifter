@@ -44,7 +44,7 @@ createPost: (req, res, next)=>{
 
     const db = req.app.get('db');
     const {event_type, item_name, picture, link} = req.body;
-
+    console.log(req.body)
     db.user_post.insert({event_type, item_name, picture, link})
         .then((post)=>{
             res.send({success: true, post})
@@ -87,5 +87,4 @@ deletePost: (req, res, next)=>{
             res.send({sucess: false, err})
         })
 },
-
 }
