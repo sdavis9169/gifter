@@ -23,12 +23,15 @@ componentDidMount(){
 
 deletePost =(id)=>{
     axios.delete(`/api/post/${id}`)
-        .then((res)=>{
-            if(res.data.success){
-                console.log('Post Deleted')
-            } else {
-                alert('Delete Post failed')
+        .then(({data})=>{
+            if(data.success){
+                console.log('item removed')
+            } else{
+                console.log('post not deleted')
             }
+        })
+        .catch((err)=>{
+            console.log(err)
         })
 }
 
@@ -36,6 +39,8 @@ deletePost =(id)=>{
         const posts = this.state.posts.map((e, r)=> {
             return <Post key={e.id}  event_type={e.event_type}
             item_name={e.item_name} picture={e.picture} link={e.link}
+            deletePost={this.deletePost}
+            id={e.id}
             />
         })
         return (

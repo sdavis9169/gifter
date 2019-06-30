@@ -80,10 +80,13 @@ createPost: (req, res, next)=>{
 deletePost: (req, res, next)=>{
     const db = req.app.get('db');
     db.user_post.destroy({id: req.params.id})
+        .then((res)=>{
+            return db.user_post.find()
+        })
         .then(post=>{
             res.send({success: true, post})
         })
-        .then(err =>{
+        .catch(err =>{
             res.send({sucess: false, err})
         })
 },
