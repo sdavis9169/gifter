@@ -80,7 +80,7 @@ class Login extends Component {
 						</div>
 						<div className="button-container">
 							<button className="btn btn-primary"  onClick={this.login}>login</button>
-							<button className="black-button" onClick={this.showRegister}>register</button>
+							<button className="btn btn-primary" onClick={this.showRegister}>register</button>
 						</div>
 					</div>
 				)}

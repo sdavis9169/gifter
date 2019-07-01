@@ -6,14 +6,16 @@ import './dashboard.css'
 import CreateGroup from '../groups/createGroup';
 import GroupList from '../groups/group_list';
 import { Link } from 'react-router-dom';
+import Header from '../shared/header';
 
  class Dashboard extends Component {
     
     render() {
         return (
             <div>
-                <h2>Create Group:</h2>
-                <CreateGroup />
+                <Header/>
+                <h2>Create Group: {this.props.title}</h2>
+             <CreateGroup />
                 <h1>Active groups</h1>
                 <GroupList />
             </div>

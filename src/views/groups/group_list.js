@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Group from './components/group';
 import {connect} from 'react-redux';
+import Header from '../shared/header';
 
 class GroupList extends Component {
         state = {
-            groups: []
+            groups: [],
         }
     componentDidMount(){
         axios.get('/api/view_groups')
@@ -20,9 +21,17 @@ class GroupList extends Component {
             }
         })
     }
+
+  
+
+    
+
+ 
+
     render() {
         const groups = this.state.groups.map((e, r)=>{
-            return <Group key={e.id} title={e.title} id={e.id} />
+            return <Group key={e.id} title={e.title} id={e.id}
+            />
         })
         
         return (

@@ -18,3 +18,10 @@ export const setPosts = (posts) => {
         payload: posts
     }
 }
+
+export const updateGroup = (group) => {
+    return {
+        type: 'update_group',
+        payload: group
+    }
+}

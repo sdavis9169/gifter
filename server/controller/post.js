@@ -80,9 +80,6 @@ createPost: (req, res, next)=>{
 deletePost: (req, res, next)=>{
     const db = req.app.get('db');
     db.user_post.destroy({id: req.params.id})
-        .then((res)=>{
-            return db.user_post.find()
-        })
         .then(post=>{
             res.send({success: true, post})
         })
@@ -90,4 +87,19 @@ deletePost: (req, res, next)=>{
             res.send({sucess: false, err})
         })
 },
+editGroup: (req, res, next)=>{
+    const db = req.app.get('db');
+    const { event_type, item_name, picture, link } = req.body;
+    const { id } = req.params;
+
+    db.edit_post([ id, event_type, item_name, picture, link])
+    .then((post)=>{
+        res.send({success: true, post})
+    })
+    .catch((err)=>{
+        res.send({success: false, err})
+    })
+}
+
+
 }

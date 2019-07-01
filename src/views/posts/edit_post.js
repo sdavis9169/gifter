@@ -1,47 +1,26 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Posts from './post_list';
+import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 
-class CreatePost extends Component {
-    state = {
-      event_type: "",
-      item_name: "",
-      picture: "",
-      link: "",
-    };
-  
+class EditPost extends Component {
+   state = {
+    event_type: "",
+    item_name: "",
+    picture: "",
+    link: "",
+   }
 
- 
+   
 
-    handleChange = (e) => {
-      this.setState({
-          [e.target.name] : e.target.value
-      })
-  }
+   handleChange = (e) => {
+    this.setState({
+        [e.target.name] : e.target.value
+    })
+}
 
-  submit=()=>{
-    debugger
-    const postObj = {
-        event_type: this.state.event_type,
-        item_name: this.state.item_name,
-        picture: this.state.picture,
-        link: this.state.link,
-        group_id: this.state.group_id
-
-    }
-    axios.post('/api/new_post', postObj)
-        .then(({data})=>{
-          if(data.success){
-            this.props.history.push(`/dashboard`)
-          }
-        })
-    
-  }
-
-  render() {
+render() {
     return (
       <div>
         <div>
@@ -88,4 +67,4 @@ class CreatePost extends Component {
   }
 }
 
-export default withRouter(connect((state) => state)(CreatePost));
+export default withRouter(connect((state) => state)(EditPost));

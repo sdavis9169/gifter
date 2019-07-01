@@ -26,4 +26,12 @@ const posts = (state=[], action) =>{
     }
 }
 
-export default combineReducers({user, group, posts});
+const updateGroup = (state={}, action) => {
+    switch(action.type){
+        case'update_group':
+        return action.payload;
+        default: return state
+    }
+}
+
+export default combineReducers({user, group, posts, updateGroup});
