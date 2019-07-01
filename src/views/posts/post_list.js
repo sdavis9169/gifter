@@ -38,19 +38,19 @@ deletePost =(id)=>{
         })
 }
 
-editPost=(id)=>{
-    axios.put(`/api/post/${id}`)
-    .then(({data})=>{
-        if(data.success){
-            this.props.history.push('/dashboard')
-        } else {
-            console.log('post not deleted')
-        }
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-}
+// editPost=(id)=>{
+//     axios.put(`/api/post/${id}`)
+//     .then(({data})=>{
+//         if(data.success){
+//             this.props.history.push('/dashboard')
+//         } else {
+//             console.log('post not deleted')
+//         }
+//     })
+//     .catch((err)=>{
+//         console.log(err)
+//     })
+// }
 
     render() {
         const posts = this.state.posts.map((e, r)=> {

@@ -87,7 +87,7 @@ deletePost: (req, res, next)=>{
             res.send({sucess: false, err})
         })
 },
-editGroup: (req, res, next)=>{
+editPost: (req, res, next)=>{
     const db = req.app.get('db');
     const { event_type, item_name, picture, link } = req.body;
     const { id } = req.params;
