@@ -42,11 +42,12 @@ app.post('/api/create_group', group.create)
 app.get('/api/view_groups', group.getAll)
 app.get('/api/groups/:id', group.getSingleGroup)
 app.get('/api/group_list', group.getAll)
+app.put('/api/group/:id', group.edit)
 
 
 //POST CONTROLLERS
 app.get('/api/posts', post.getAll)
-app.get('/api/post', post.getOnePost)
+app.get('/api/post/:id', post.getOnePost)
 app.post('/api/new_post', post.createPost)
 app.delete('/api/post/:id', post.deletePost)
 

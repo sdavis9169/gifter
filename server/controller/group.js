@@ -1,24 +1,10 @@
 module.exports = {
     create: (req, res, next) => {
+
         const db = req.app.get('db')
         const { title }  = req.body;
-
-        // db.group_table.insert({title})
-//         .then(()=>{{res.status(200)
-//             .send({Message: 'Group Added'})}})
-//             .catch((err)=>{
-//                 res.status(500).send({errorMessage: "Error adding user"})
-//             console.log(err)
-//             })
-
-            // db.group_table.insert({title})
-            //     .then(()=>{
-            //         res.status(200)
-            //     })
-            //     .catch((err)=>{
-            //         res.status(500)
-            //     })
-
+        console.log(req.session.user)
+        const user_id = req.session.user.id;
         db.group_table.findOne({title})
             .then((name)=>{
                 if(name){
@@ -28,7 +14,7 @@ module.exports = {
                 }
             })
             .then(()=>{
-                return db.group_table.insert({title})
+                return db.group_table.insert({title, user_id})
 
             })
            .then((group)=>{
@@ -41,7 +27,7 @@ module.exports = {
     
     getAll: (req, res, next) => {
         const db = req.app.get('db')
-        db.group_table.find()
+        db.get_all_groups()
         .then((groups)=>{
             res.send({success: true, groups})
         })
@@ -61,5 +47,18 @@ module.exports = {
             })
     },
 
+    edit: (req, res, next)=>{
+        const db = req.app.get('db');
+        const { title } = req.body;
+        const {id} = req.params;
+
+        db.edit_group([id, title])
+        .then((group)=>{
+            res.send({success: true, group})
+        })
+        .catch((err)=>{
+            res.send({success: false, err})
+        })
+    }
     
 }

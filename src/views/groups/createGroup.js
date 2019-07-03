@@ -17,11 +17,11 @@ class CreateGroup extends Component {
 
 createGroup = () =>{
     const group = {
-        title: this.state.title
+        title: this.state.title,
+        user_id: this.state.user_id
     };
     axios.post('/api/create_group', group)
     .then(({data})=>{
-        debugger
         console.log({data})
         if(data.success){
         this.props.setGroup(data.group);

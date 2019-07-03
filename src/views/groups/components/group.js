@@ -6,6 +6,7 @@ export default function Group (props) {
             <div>
                 <Link to={`/groups/${props.id}`}>
                 <h2>{props.title}</h2>
+                <p>created by: {props.email}</p>
                 </Link>
             </div>
         )

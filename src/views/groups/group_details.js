@@ -9,7 +9,8 @@ import Header from '../shared/header'
 
 class ViewGroup extends Component {
 	state = {
-		group: {}
+		group: {},
+		newTitle: ''
 	};
 	componentDidMount() {
         axios.get(`/api/groups/${this.props.match.params.id}`)
@@ -28,11 +29,38 @@ class ViewGroup extends Component {
 		});
 	}
 
+	editName = () =>{
+		debugger
+		const nameObj = {
+			group_id: this.props.group.id,
+			title: this.state.title
+		};
+
+		axios.put(`/api/group/${this.props.match.params.id}`, nameObj)
+		.then((req)=>{
+			console.log(req.body)
+		})
+	}
+
+	handleChange = (e) => {
+        this.setState({
+            [e.target.name] : e.target.value
+        })
+    }
+
+
     render() {
         return (
             <div>
 				<Header />
-                <h1>Group: {this.props.group.title}</h1>
+                <h1>Group: {this.props.group.title}</h1> 
+				<input 
+				value={this.state.title} 
+				onChange={this.handleChange}
+				type='text'
+				name="title"
+				/>
+				<button onClick={this.editName} className="btn btn-primary" >Change Group Name</button>
 				<CreatePost />
 				<Posts />
             </div>

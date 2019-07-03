@@ -44,8 +44,9 @@ createPost: (req, res, next)=>{
 
     const db = req.app.get('db');
     const {event_type, item_name, picture, link} = req.body;
+    const { user_id} = req.session;
     console.log(req.body)
-    db.user_post.insert({event_type, item_name, picture, link})
+    db.user_post.insert({event_type, item_name, picture, link, user_id})
         .then((post)=>{
             res.send({success: true, post})
         })
@@ -79,6 +80,7 @@ createPost: (req, res, next)=>{
 
 deletePost: (req, res, next)=>{
     const db = req.app.get('db');
+
     db.user_post.destroy({id: req.params.id})
         .then(post=>{
             res.send({success: true, post})
@@ -87,10 +89,11 @@ deletePost: (req, res, next)=>{
             res.send({sucess: false, err})
         })
 },
+
 editPost: (req, res, next)=>{
     const db = req.app.get('db');
-    const { event_type, item_name, picture, link } = req.body;
-    const { id } = req.params;
+    const {event_type, item_name, picture, link} = req.body;
+    const {id} = req.params;
 
     db.edit_post([ id, event_type, item_name, picture, link])
     .then((post)=>{

@@ -29,8 +29,10 @@ class GroupList extends Component {
  
 
     render() {
+        
         const groups = this.state.groups.map((e, r)=>{
-            return <Group key={e.id} title={e.title} id={e.id}
+            console.log(e)
+            return <Group key={r} title={e.title} id={e.id} email={e.email}
             />
         })
         
