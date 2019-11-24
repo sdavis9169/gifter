@@ -19,9 +19,9 @@ export const setPosts = (posts) => {
     }
 }
 
-export const updateGroup = (group) => {
+export const updateGroup = (name) => {
     return {
         type: 'update_group',
-        payload: group
+        payload: name
     }
 }
